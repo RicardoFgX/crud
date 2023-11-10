@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Libros</title>
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+    <h1>Libros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Publicado en</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="libro : ${libros}">
+                <td th:text="${libro.titulo}">Título del libro</td>
+                <td th:text="${libro.autor}">Autor del libro</td>
+                <td th:text="${libro.isbn}">ISBN</td>
+                <td th:text="${libro.publicadoEn}">Año de publicación</td>
+                <td class="actions">
+                    <!-- Icono para editar -->
+                    <a th:href="@{/libro/editar/{id}(id=${libro.id})}">
+                        <img src="images/editar.png" alt="Editar" id="editar">
+                    </a>
+                    <!-- Icono para eliminar -->
+                    <a th:href="@{/libro/eliminar/{id}(id=${libro.id})}" th:onclick="'return confirm(\'' + '¿Estás seguro de que quieres eliminar este libro?' + '\')'">
+                        <img src="images/borrar.png" alt="Eliminar" id="borrar">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Enlace para agregar un nuevo libro -->
+    <a th:href="@{/libro/nuevo}">Agregar Nuevo Libro</a>
+</body>
+</html>

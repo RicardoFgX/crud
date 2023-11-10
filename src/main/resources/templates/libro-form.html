@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Formulario de Producto</title>
+	<link rel="stylesheet" type="text/css" href="CSS/form.css">
+</head>
+
+<body>
+	<h1>Libro</h1>
+	<form th:action="@{/libro}" th:object="${libro}" method="post">
+		<!-- Campo oculto para el ID del libro -->
+		<input type="hidden" name="id" th:value="*{id}" />
+		Pepe: <input type="text" th:field="*{titulo}" />
+		Autor: <input type="text" th:field="*{autor}" />
+		ISBN: <input type="text" th:field="*{isbn}" />
+		Fecha de Publicación: <input type="date" th:field="*{publicadoEn}" />
+		<input type="submit" value="Guardar" />
+	</form>
+</body>
+
+</html>
